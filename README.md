@@ -16,7 +16,7 @@ ChatGPT in Google Sheets integrates OpenAI's GPT-3 language model into Google Sh
 ## Setup
 
 1. Get an API key from https://platform.openai.com/account/api-keys.
-2. Open Google Sheets, go to "Tools" -> "Script editor".
+2. Open Google Sheets, go to "Extensions" -> "Apps Script".
 3. In the script editor, create a new script file and paste the contents of `chatgpt.gs` from this repository.
 4. Replace the `OPENAI_API_KEY` variable in the script file with your API key.
 5. Save the script file and go back to your Google Sheets document.
