@@ -1,7 +1,7 @@
 // Attach your api-key from https://platform.openai.com/account/api-keys
 var OPENAI_API_KEY = '<OPENAI_API_KEY>';
 
-const MAX_TOKENS = 256;
+const MAX_TOKENS = 1024;
 
 // function which we can call ChatGPT api
 function callOpenAIAPI(prompt, systemContent) {
@@ -12,7 +12,8 @@ function callOpenAIAPI(prompt, systemContent) {
 
   var data = {
     messages: messages,
-    model: 'gpt-3.5-turbo',
+    // model: 'gpt-3.5-turbo',
+    model: 'gpt-4o',
     temperature: 0.5,
     max_tokens: MAX_TOKENS,
   };
@@ -37,8 +38,8 @@ function GPT() {
     return 'Error: Provide an input.'
 
   // call open-ai with prompt; try to remove bloat from the answer
-  systemContent = 'You are a helpful assistant. Don not apologize for being a language model. Provide the best possible and accurate answer.';
-  var response = callOpenAIAPI("Provide a short answer, an incomplete sentence, with as few words as possible. Knowledge cutoff: 2023/1/1. \n" + prompt, systemContent);
+  systemContent = 'You are a helpful assistant. Do not apologize for being a language model. Provide the best possible and accurate answer.';
+  var response = callOpenAIAPI("Provide a short answer, an incomplete sentence, with as few words as possible." + prompt, systemContent);
   return response.replace(/[.!?]$/, '');;  // remove punctuation from the end if present
 }
 
@@ -63,7 +64,7 @@ function test_GPT() {
 
   // GPT
   assertEqual(GPT('Who is the current CEO of Amazon?'), 'Andy Jassy'); 
-  assertEqual(GPT('Make a comma separated list of FAANG companies.'), 'Apple, Amazon, Facebook, Netflix, Google');  
+  assertEqual(GPT('Make a comma separated list of FAANG companies.'), 'Facebook, Amazon, Apple, Netflix, Google');  
   assertEqual(GPT("What was the revenue of Facebook in 2020? Round to the nearest billion."), "$86 billion");  
 
   // rawGPT
